@@ -1,3 +1,6 @@
+### Author: Pengfei Qiao (pq26@cornell.edu)
+### Script to call differentially expressed genes in the paper
+
 setwd("/Users/HomeFolder/Desktop/My Computer/Labs/Scanlon Lab/Cuticle/RNAseq/analysis/version3_final")
 counts <- read.delim("counts.txt", header=T, row.names = 1)
 
