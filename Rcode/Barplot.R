@@ -1,3 +1,6 @@
+### Author: Pengfei Qiao (pq26@cornell.edu)
+### Script to make barplots in the paper
+
 setwd("/Users/HomeFolder/Desktop/My Computer/Labs/Scanlon Lab/Meeting_files/Other meetings_talks/Student_seminar_05042017")
 #To keep space in colnames, check.names = FALSE
 cuticle <- read.csv("Cuticle_PQ.csv", check.names = FALSE, header = TRUE)
