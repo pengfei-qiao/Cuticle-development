@@ -1,3 +1,6 @@
+### Author: Pengfei Qiao (pq26@cornell.edu)
+### Script to make barplots in the paper
+
 #originally from "/Users/HomeFolder/Desktop/My Computer/Labs/Scanlon Lab/Cuticle/cuticle_chemistry/Phytochrome"
 x <- read.csv("/Users/HomeFolder/Desktop/My Computer/Labs/Scanlon Lab/Cuticle/cuticle_chemistry/Phytochrome/phytochrome.csv",row.names = 1,check.names = FALSE)
 x[,1:35] <- x[,1:35]/2 #Because Richard only divided by leaf area while should actually be two sides of the leaf
