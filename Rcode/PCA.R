@@ -1,5 +1,8 @@
+### Author: Pengfei Qiao (pq26@cornell.edu)
+### Script to do the Principal Component Analysis in the paper
+
 counts <- read.table("counts_gene.txt", sep="\t", header=T, row.names = 1)
-counts <- scale(counts) #I don't think I should do this.. as they are not necessarily be normally distributed... But that has prettier graphs lol
+counts <- scale(counts)
 result <- prcomp(t(counts))
 result$sdev/sum(result$sdev)*100
 png("PCA_PC1_2.png", width = 900, height = 480)
