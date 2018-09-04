@@ -218,17 +218,17 @@ traitData <- read.csv("Cuticle_PQ_v3_AlogmaWax.csv",check.names=FALSE)
 #mw <- read.csv("molecularweight.csv",check.names = FALSE)#molecular weight, ignore warning message
 elog <- rep(c(1,2.254485258,3.41124908,4.27455434,4.89023175,5.2901725,5.69280034),each=3) #Another way to adjust for cell elongation
 traitData[,-1] <- traitData[,-1]*elog
-traitData <- traitData[-c(6,19:21),] #Remove stage 8
+traitData <- traitData[-c(6,19:21),] #Remove stage 8, remove outlier
 traitData <- traitData[,-18] #Remove zero content lipid
 
 ## A shorter version
 # traitData <- traitData[,c(1,8:11,13,15:17,22:33)]
-# colnames(traitData)[15] <- "HFA 16:0 16-OH"
-# colnames(traitData)[16] <- "HFA 16:0 9,16-diOH"
-# colnames(traitData)[17] <- "HFA 18:2 9-OH"
-# colnames(traitData)[18] <- "HFA 18:1 10 (9),18-diOH"
-# colnames(traitData)[19] <- "HFA 18:0 9-epoxy-18-OH"
-# colnames(traitData)[20] <- "GCA 18:1 9-OH"
+# colnames(traitData)[16] <- "HFA 16:0 16-OH"
+# colnames(traitData)[17] <- "HFA 16:0 9,16-diOH"
+# colnames(traitData)[18] <- "HFA 18:2 9-OH"
+# colnames(traitData)[19] <- "HFA 18:1 10 (9),18-diOH"
+# colnames(traitData)[20] <- "HFA 18:0 9-epoxy-18-OH"
+# colnames(traitData)[21] <- "DCA 18:1 9-OH"
 
 dim(traitData)
 names(traitData)
@@ -248,7 +248,7 @@ modTraitP <- corPvalueStudent(modTraitCor, nSamples)
 textMatrix <- paste(signif(modTraitCor, 2),"\n(", signif(modTraitP, 1), ")", sep="")
 dim(textMatrix) <- dim(modTraitCor)
 
-png("~/Desktop/Cor_heatmap_merge_new_biochem.png", width = 15, height = 8, units = 'in', res = 1200) #Change this size and make readable figures!! Although the size of the file will be huge!
+png("Cor_heatmap_merge_new_biochem.png", width = 15, height = 8, units = 'in', res = 1200) #Change this size and make readable figures!! Although the size of the file will be huge!
 par(mar=c(12,14,3,3), cex=0.8)
 names(MEstotalalkane) <- paste("Module",LETTERS[1:21])
 #Heatmap for correlation values
