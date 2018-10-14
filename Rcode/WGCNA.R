@@ -2,6 +2,7 @@
 ### Script to do the Weighted Gene Correlation Network Analysis in the paper
 
 ## Get scaled (sample-wise scaling, gene-wise scaling does not matter) cpm counts
+library(edgeR)
 counts <- read.table("counts_gene.txt")
 counts <- counts[,seq(2,42,2)][,c(1:15,17:21)]
 y <- DGEList(counts=counts)
