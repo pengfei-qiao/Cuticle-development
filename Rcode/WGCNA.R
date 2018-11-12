@@ -157,20 +157,28 @@ counts <- counts[,seq(2,42,2)][,c(1:15,17:21)]
 y <- DGEList(counts=counts)
 y <- calcNormFactors(y)
 y <- data.frame(cpm(y))
-zmlip <- list.files(path="../",pattern="zmlip_*",full.names = TRUE)[-1] #-1 to get rid of the directory that matches the name
+# zmlip <- list.files(path="../",pattern="zmlip_*",full.names = TRUE)[-1] #-1 to get rid of the directory that matches the name
+zmlip <- c("GRMZM2G101958","GRMZM2G104847","GRMZM2G088919","GRMZM2G149636")
 zmlip_exp <- data.frame(matrix(rep(NA,7*length(zmlip)),nrow=length(zmlip)))
-colnames(zmlip_exp) <- paste("Section",1:7)
-rownames(zmlip_exp) <- c("ZmABC","ZmCER","ZmFAH","ZmGPAT","ZmKCS","ZmLACS","ZmLAH","ZmLTP","ZmMAGL","ZmWS","ZmWSD")
-for (i in zmlip) {
-  a <- as.character(read.table(i)[,1])
+colnames(zmlip_exp) <- paste("Interval",1:7)
+# rownames(zmlip_exp) <- c("ZmABC","ZmCER","ZmFAH","ZmGPAT","ZmKCS","ZmLACS","ZmLAH","ZmLTP","ZmMAGL","ZmWS","ZmWSD")
+rownames(zmlip_exp) <- c("ZmLTP1","ZmLACS2","ZmGDSL","ZmKCS1")
+# for (i in zmlip) {
+#   a <- as.character(read.table(i)[,1])
+#   x <- apply(y[which(rownames(y) %in% a),],2,sum)
+#   x2 <- c(mean(x[c(1,8,15)]),mean(x[c(2,9)]),mean(x[c(3,10,16)]),mean(x[c(4,11,17)]),mean(x[c(5,12,18)]),mean(x[c(6,13,19)]),mean(x[c(7,14,20)]))
+#   zmlip_exp[which(zmlip %in% i),] <- x2
+# }
+for (a in zmlip) {
   x <- apply(y[which(rownames(y) %in% a),],2,sum)
   x2 <- c(mean(x[c(1,8,15)]),mean(x[c(2,9)]),mean(x[c(3,10,16)]),mean(x[c(4,11,17)]),mean(x[c(5,12,18)]),mean(x[c(6,13,19)]),mean(x[c(7,14,20)]))
-  zmlip_exp[which(zmlip %in% i),] <- x2
+  zmlip_exp[which(zmlip %in% a),] <- x2
 }
 zmlip_exp <- t(scale(t(zmlip_exp))) #Scale is scaling columns
 library(gplots)
-pdf("Cuticle_genes_heatmap2.pdf")
-heatmap.2(as.matrix(zmlip_exp), Colv = FALSE, srtCol=45,dendrogram = "none", trace="none", margin = c(10,10), density.info="none", key.title=NA,key.xlab="Scaled expression level")
+# pdf("Cuticle_genes_heatmap2.pdf")
+pdf("Cuticle_genes_heatmap3.pdf")
+heatmap.2(as.matrix(zmlip_exp), Colv = FALSE, srtCol=45,dendrogram = "none", trace="none", margin = c(10,10),col=bluered, density.info="none", key.title=NA,key.xlab="Scaled expression level")
 dev.off()
 
 # Eigengenes heatmap
