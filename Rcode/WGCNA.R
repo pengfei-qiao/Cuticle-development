@@ -160,7 +160,7 @@ y <- data.frame(cpm(y))
 # zmlip <- list.files(path="../",pattern="zmlip_*",full.names = TRUE)[-1] #-1 to get rid of the directory that matches the name
 zmlip <- c("GRMZM2G101958","GRMZM2G104847","GRMZM2G088919","GRMZM2G149636")
 zmlip_exp <- data.frame(matrix(rep(NA,7*length(zmlip)),nrow=length(zmlip)))
-colnames(zmlip_exp) <- paste("Interval",1:7)
+colnames(zmlip_exp) <- paste("Interval",c("2-4 cm", "4-6 cm","6-8 cm","8-10 cm","10-12 cm","12-14 cm", "20-22 cm"))
 # rownames(zmlip_exp) <- c("ZmABC","ZmCER","ZmFAH","ZmGPAT","ZmKCS","ZmLACS","ZmLAH","ZmLTP","ZmMAGL","ZmWS","ZmWSD")
 rownames(zmlip_exp) <- c("ZmLTP1","ZmLACS2","ZmGDSL","ZmKCS1")
 # for (i in zmlip) {
@@ -207,6 +207,7 @@ heatmap.2(mes, Colv = FALSE, Rowv = FALSE, dendrogram = "none", offsetRow = 0, o
 dev.off()
 
 # Eigengene line plot
+mes <- t(mes)
 mes2 <- data.frame(matrix(NA,nrow=dim(mes)[1]*dim(mes)[2],ncol=3))
 mes2[,1] <- rownames(mes)
 for (i in 1:dim(mes)[2]) {
@@ -214,7 +215,7 @@ for (i in 1:dim(mes)[2]) {
   mes2[(i*dim(mes)[1]-6):(i*dim(mes)[1]),3] <- colnames(mes)[i]
 }
 library(ggplot2)
-pdf("Eigengenes_line.pdf")
+pdf("Eigengenes_line2.pdf")
 ggplot(data=mes2,aes(x=X1,y=X2,group=X3)) + geom_line(aes(colour=X3)) + 
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), axis.line = element_line(colour = "black")) +
