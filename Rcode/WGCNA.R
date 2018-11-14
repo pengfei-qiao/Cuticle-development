@@ -158,11 +158,11 @@ y <- DGEList(counts=counts)
 y <- calcNormFactors(y)
 y <- data.frame(cpm(y))
 # zmlip <- list.files(path="../",pattern="zmlip_*",full.names = TRUE)[-1] #-1 to get rid of the directory that matches the name
-zmlip <- c("GRMZM2G101958","GRMZM2G104847","GRMZM2G088919","GRMZM2G149636")
+zmlip <- c("GRMZM2G101958","GRMZM2G104847","GRMZM2G088919","GRMZM2G149636","GRMZM2G177812")
 zmlip_exp <- data.frame(matrix(rep(NA,7*length(zmlip)),nrow=length(zmlip)))
 colnames(zmlip_exp) <- paste("Interval",c("2-4 cm", "4-6 cm","6-8 cm","8-10 cm","10-12 cm","12-14 cm", "20-22 cm"))
 # rownames(zmlip_exp) <- c("ZmABC","ZmCER","ZmFAH","ZmGPAT","ZmKCS","ZmLACS","ZmLAH","ZmLTP","ZmMAGL","ZmWS","ZmWSD")
-rownames(zmlip_exp) <- c("ZmLTP1","ZmLACS2","ZmGDSL","ZmKCS1")
+rownames(zmlip_exp) <- c("ZmLTP1","ZmLACS2","ZmGDSL","ZmKCS1","ZmABCG11")
 # for (i in zmlip) {
 #   a <- as.character(read.table(i)[,1])
 #   x <- apply(y[which(rownames(y) %in% a),],2,sum)
